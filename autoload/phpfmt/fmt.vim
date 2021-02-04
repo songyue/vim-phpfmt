@@ -26,16 +26,22 @@ function! phpfmt#fmt#format() abort "{{{
         let l:curw=winsaveview()
     endif
 
+    " vim 缩进格式化
+     silent exec 'normal ggVG='
     " Write current unsaved buffer to a temp file
     if exists('g:phpfmt_tmp_dir')
         let l:tmpdir = g:phpfmt_tmp_dir . expand('%:h')
         if !isdirectory(l:tmpdir)
             exe 'silent! !mkdir -p ' . shellescape(l:tmpdir, 1)
         endif
-        let l:tmpname = g:phpfmt_tmp_dir . expand('%')
+        let l:tmpfile = g:phpfmt_tmp_dir . expand('%')
     else
-        let l:tmpname = tempname()
+        let l:tmpfile = tempname()
     endif
+
+    " 文件后缀名区分 格式化规则
+    let l:tmpname = l:tmpfile . '.' . expand("%:e")
+
     call writefile(getline(1, '$'), l:tmpname)
 
     if g:phpfmt_experimental == 1
