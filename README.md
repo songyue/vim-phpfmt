@@ -22,7 +22,7 @@ default standard. To change to a different standard type or file, add the follow
 setting to your vimrc file:
 
 ```vim
-" A standard type: PEAR, PHPCS, PSR1, PSR2, Squiz and Zend
+" A standard type: PEAR, PHPCS, PSR1, PSR2, PSR12,Squiz and Zend
 let g:phpfmt_standard = 'PSR2'
 
 " Or your own defined source of standard (absolute or relative path):
